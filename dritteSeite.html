@@ -74,7 +74,6 @@
     <div id="cursor"></div>
 </div>
 <div id="distortion"></div>
-
 <script>
     const message = "Hallo Agentin Leberkaas. Das Leben ist kein Dackelhof. Sie werden nicht alle retten können! Muahahahahahahahaaaaa.... WIR SPIELEN JETZT EIN SPIEL!";
     let index = 0;
@@ -91,6 +90,10 @@
             setTimeout(function() {
                 document.getElementById("distortion").style.display = "block";
             }, 500);
+            // Automatische Weiterleitung nach 10 Sekunden
+            setTimeout(function() {
+                window.location.href = 'seiteVier.html';
+            }, 10000);
         }
     }
 
@@ -98,6 +101,7 @@
         typeWriter();
     };
 </script>
+
 
 </body>
 </html>
