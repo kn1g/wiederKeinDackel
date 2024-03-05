@@ -4,29 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date Selector Example</title>
+    <style>
+        /* Style the body to use full height of the viewport and apply flex display */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Style the container for a little spacing */
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
     <script>
         // Function to handle the date selection
         function handleDateSelection() {
-            // Get the selected date from the input
             var selectedDate = document.getElementById('dateSelector').value;
-
-            // Display the selected date in an alert box
             alert("You selected: " + selectedDate);
-
-            // Alternatively, display the selected date on the page
             document.getElementById('displayDate').innerText = "Selected Date: " + selectedDate;
         }
     </script>
 </head>
 <body>
 
-<h2>Select a Date</h2>
-
-<!-- Date input field -->
-<input type="date" id="dateSelector" onchange="handleDateSelection()">
-
-<!-- Place to display the selected date on the page -->
-<p id="displayDate">Selected Date: None</p>
+<div class="container">
+    <h2>Select a Date</h2>
+    <input type="date" id="dateSelector" onchange="handleDateSelection()">
+    <p id="displayDate">Selected Date: None</p>
+</div>
 
 </body>
 </html>
