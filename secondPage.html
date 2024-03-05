@@ -3,54 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geheime Nachricht mit ASCII Dackel</title>
+    <title>Geheime Nachricht und ASCII Dackel</title>
     <style>
         body {
             background-color: black;
             color: #0f0;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            padding: 20px;
             margin: 0;
         }
-        #container {
-            width: 80%;
-            margin: auto;
-            overflow-wrap: break-word;
-        }
-        #message {
+        #message, #asciiDachshund {
             white-space: pre-wrap;
-            overflow: hidden;
-            border-right: .15em solid #0f0;
-            animation: blink-cursor 500ms steps(40) infinite;
+            font-size: 1em; /* Standard-Schriftgröße für den Text */
         }
-        @keyframes blink-cursor {
-            from, to { border-color: transparent }
-            50% { border-color: #0f0; }
+        #asciiDachshund {
+            font-size: 4em; /* Größere Schriftgröße für ASCII-Art */
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <div id="message"></div>
-    </div>
+    <div id="message"></div>
+    <div id="asciiDachshund"></div>
     <script>
-        const text = "Wenn Sie heute Geburstag haben, müssen Sie wohl die berühmte Agentin Leberkaas sein.\nZuersteinmal wünsche ich Ihnen natürlich alles Gute zu ihrem Geburstag!\nLeider muss ich sie kontaktieren, da wiedereinmal etwas vorgefallen ist und wir Ihre Hilfe brauchen!\nEin gemeiner Dackelentführer treibt sein Unwesen! Er hat schon zwei Dackel entführt und treibt ein böses Spiel! ...\noooooohhh nein, er ist hier im Hauptquartier!!!\nEr übernimmt die VERBINDUNG!!DLwfk<-sf.,-.fa .....\n\n\n"; // Zeilenumbrüche hinzugefügt
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("message").textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 30);
-            } else {
-                // Nachdem der Text vollständig ist, den ASCII-Dackel in der Konsole anzeigen
-                typeLine();
-            }
-        }
-function showAsciiDachshund() {
-    const asciiArt = `
+        const text = `Wenn Sie heute Geburstag haben, müssen Sie wohl die berühmte Agentin Leberkaas sein.
+Zuersteinmal wünsche ich Ihnen natürlich alles Gute zu ihrem Geburstag!
+Leider muss ich sie kontaktieren, da wiedereinmal etwas vorgefallen ist und wir Ihre Hilfe brauchen!
+Ein gemeiner Dackelentführer treibt sein Unwesen! Er hat schon zwei Dackel entführt und treibt ein böses Spiel! ...
+oooooohhh nein, er ist hier im Hauptquartier!!!
+Er übernimmt die VERBINDUNG!!DLwfk<-sf.,-.fa .....`;
+
+        const asciiArt = `
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkc,.     ,oKWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN0dc'.          .:d0NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXkl,.                 .'cd0NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
@@ -263,18 +248,32 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOl'                     .kMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOo;.                 cNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWXko:'.          'oXMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-`.split('\n'); // ASCII-Art des Dackels, aufgeteilt in Zeilen
+`;
 
-    let lineIndex = 0;
-    function typeLine() {
-        if (lineIndex < asciiArt.length) {
-            document.getElementById("asciiDachshund").textContent += asciiArt[lineIndex] + '\n';
-            lineIndex++;
-            setTimeout(typeLine, 100); // Schnelleres Erscheinen der Zeilen
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("message").textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 30);
+            } else {
+                // Nachdem der Text vollständig angezeigt wurde, eine kurze Pause einlegen
+                setTimeout(showAsciiDachshund, 1000); // Startet die ASCII-Art Ausgabe nach einer Sekunde
+            }
         }
-    }
-    
-}
+
+        let lineIndex = 0;
+        function showAsciiDachshund() {
+            if (lineIndex < asciiArt.split('\n').length) {
+                document.getElementById("asciiDachshund").textContent += asciiArt.split('\n')[lineIndex] + '\n';
+                lineIndex++;
+                setTimeout(showAsciiDachshund, 100); // Schnellere Ausgabe für die ASCII-Art
+            }
+        }
+
+        window.onload = function() {
+            typeWriter();
+        };
     </script>
 </body>
 </html>
