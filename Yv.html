@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dackel Seite</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .half {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50%;
+            color: #fff;
+            text-align: center;
+        }
+        .half:first-child {
+            background: #6495ED; /* Himmelblau */
+        }
+        .half:last-child {
+            background: #F08080; /* Hellrot */
+        }
+        img {
+            max-height: 50%;
+            max-width: 80%;
+        }
+        #typewriter {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="half">
+    <img src="path/to/your/first-dachshund-image.jpg" alt="Dackel 1">
+</div>
+<div class="half">
+    <img src="path/to/your/second-dachshund-image.jpg" alt="Dackel 2">
+    <div id="typewriter"></div>
+</div>
+
+<script>
+    const text = "Hier sind die Dackel! Einer oben und einer unten.";
+    let index = 0;
+    const speed = 150; // Geschwindigkeit des Typewriter-Effekts in ms
+
+    function typeWriter() {
+        if (index < text.length) {
+            document.getElementById("typewriter").innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    window.onload = function() {
+        typeWriter();
+    };
+</script>
+
+</body>
+</html>
+
