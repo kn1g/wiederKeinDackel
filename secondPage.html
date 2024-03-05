@@ -3,6 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const missionStatus = document.cookie.split('; ').find(row => row.startsWith('MissionErfolgreich='));
+    if (missionStatus && missionStatus.split('=')[1] === 'false') {
+        document.body.innerHTML = `
+            <style>
+                body {
+                    background-image: url('bg.jpg');
+                    background-size: cover;
+                    height: 100vh;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+                #missionFailedPopup {
+                    background-color: #202020;
+                    color: red;
+                    padding: 20px;
+                    border: 2px solid red;
+                    font-size: 20px;
+                }
+            </style>
+            <div id="missionFailedPopup">MISSION GESCHEITERT</div>
+        `;
+    }
+});
+</script>
+
     <title>Geheime Nachricht und ASCII Dackel</title>
     <style>
         body {
