@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geheime Nachricht</title>
+    <title>Geheime Nachricht mit ASCII Dackel</title>
     <style>
         body {
             background-color: black;
@@ -16,19 +16,19 @@
             margin: 0;
         }
         #container {
-            width: 80%; /* Anpassen für die optimale Breite */
+            width: 80%;
             margin: auto;
-            overflow-wrap: break-word; /* Sorgt dafür, dass der Text umbricht */
+            overflow-wrap: break-word;
+        }
+        #message {
+            white-space: pre-wrap;
+            overflow: hidden;
+            border-right: .15em solid #0f0;
+            animation: blink-cursor 500ms steps(40) infinite;
         }
         @keyframes blink-cursor {
             from, to { border-color: transparent }
             50% { border-color: #0f0; }
-        }
-        #message {
-            white-space: pre-wrap; /* Erlaubt Zeilenumbrüche und Leerzeichen */
-            overflow: hidden; /* Versteckt den Überlauf */
-            border-right: .15em solid #0f0;
-            animation: blink-cursor 500ms steps(40) infinite;
         }
     </style>
 </head>
@@ -37,14 +37,25 @@
         <div id="message"></div>
     </div>
     <script>
-        const text = "Wenn Sie heute Geburstag haben, müssen Sie wohl die berühmte Agentin Leberkaas sein. Zuersteinmal wünsche ich Ihnen natürlich alles Gute zu ihrem Geburstag! Leider muss ich sie kontaktieren, da wiedereinmal etwas vorgefallen ist und wir Ihre Hilfe brauchen! Ein gemeiner Dackelentführer treibt sein Unwesen! Er hat schon zwei Dackel entführt und treibt ein böses Spiel! ... oooooohhh nein, er ist hier im Hauptquartier!!! Er übernimmt die VERBINDUNG!!DLwfk<-sf.,-.fa ..... ";
+        const text = "Wenn Sie heute Geburstag haben, müssen Sie wohl die berühmte Agentin Leberkaas sein.\nZuersteinmal wünsche ich Ihnen natürlich alles Gute zu ihrem Geburstag!\nLeider muss ich sie kontaktieren, da wiedereinmal etwas vorgefallen ist und wir Ihre Hilfe brauchen!\nEin gemeiner Dackelentführer treibt sein Unwesen! Er hat schon zwei Dackel entführt und treibt ein böses Spiel! ...\noooooohhh nein, er ist hier im Hauptquartier!!!\nEr übernimmt die VERBINDUNG!!DLwfk<-sf.,-.fa .....\n\n\n"; // Zeilenumbrüche hinzugefügt
         let i = 0;
         function typeWriter() {
             if (i < text.length) {
                 document.getElementById("message").textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 30); // Geschwindigkeit, mit der die Buchstaben erscheinen
+                setTimeout(typeWriter, 30);
+            } else {
+                // Nachdem der Text vollständig ist, den ASCII-Dackel in der Konsole anzeigen
+                showAsciiDachshund();
             }
+        }
+        function showAsciiDachshund() {
+            console.log(`
+             __      _
+            o'')}____//
+             \`_/      )
+             (_(_/-(_/
+            `);
         }
         window.onload = function() {
             typeWriter();
