@@ -46,8 +46,77 @@
             50% { border-color: #0f0; }
         }
     </style>
+    <style>
+        /* Hintergrund für das Overlay */
+        #overlay {
+            position: fixed;
+            display: none; /* Versteckt es standardmäßig */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2; /* Stellt sicher, dass das Overlay über anderen Inhalten liegt */
+            cursor: pointer;
+        }
+
+        /* Stil für das Popup-Fenster */
+        #popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #202020;
+            padding: 20px;
+            z-index: 3;
+            text-align: center;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Knopf zum Schließen des Popups */
+        #closePopup {
+            margin-top: 20px;
+            background-color: #0f0;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
+    <div id="overlay">
+    <div id="popup">
+        <p>WARNUNG: Systemintegritätsverletzung erkannt.</p>
+        <p>Unbefugter Zugriff wurde identifiziert. Starten Sie umgehend Sicherheitsprotokolle und kontaktieren Sie den Systemadministrator.</p>
+        <p>Dies ist kein Übungsalarm.</p>
+        <button id="closePopup">Schließen</button>
+    </div>
+</div>
+
+<script>
+    function showHackerAlert() {
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    document.getElementById('closePopup').onclick = function() {
+        document.getElementById('overlay').style.display = 'none';
+    };
+
+    // Funktion zum Anzeigen des Popups nach der ASCII-Art
+    function completeAsciiArtDisplay() {
+        // Hier Ihre Logik zum Abschließen der ASCII-Art-Darstellung
+        showHackerAlert();
+    }
+
+    // Beispielaufruf der Funktion, ersetzen Sie dies durch Ihren tatsächlichen Aufruf
+    setTimeout(completeAsciiArtDisplay, 10000); // Zeigt das Popup nach 5 Sekunden
+</script>
     <div id="message"></div>
     <div id="asciiDachshund"></div>
     <script>
