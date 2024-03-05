@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tierschutzverein - Dackelrettung</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        #message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .dog-container {
+            position: relative;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .dog-container img {
+            width: 300px;
+            height: auto;
+            transition: filter 0.3s ease;
+        }
+        .cross {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: red;
+            font-size: 72px;
+            display: none;
+            pointer-events: none; /* Damit das Kreuz nicht mit der Maus interagieren kann */
+        }
+    </style>
+</head>
+<body>
+
+<div id="message">Du kannst nur einen Dackel retten!</div>
+
+<div class="dog-container" id="dog1">
+    <img src="path/to/your/dog-image-1.jpg" alt="Dackel 1">
+    <div class="cross">&#10060;</div> <!-- Rotes Kreuz Symbol -->
+</div>
+
+<div class="dog-container" id="dog2">
+    <img src="path/to/your/dog-image-2.jpg" alt="Dackel 2">
+    <div class="cross">&#10060;</div> <!-- Rotes Kreuz Symbol -->
+</div>
+
+<script>
+    document.getElementById('dog1').addEventListener('mouseenter', function() {
+        document.querySelector('#dog2 img').style.filter = 'grayscale(100%)';
+        document.querySelector('#dog2 .cross').style.display = 'block';
+    });
+    document.getElementById('dog1').addEventListener('mouseleave', function() {
+        document.querySelector('#dog2 img').style.filter = '';
+        document.querySelector('#dog2 .cross').style.display = 'none';
+    });
+
+
+</script>
+
+</body>
+</html>
