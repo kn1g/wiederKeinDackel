@@ -80,6 +80,20 @@
             padding: 10px;
             font-size: 16px;
         }
+        #popup2 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            background-color: #202020;
+            color: red;
+            padding: 20px;
+            z-index: 100;
+            text-align: center;
+            border: 2px solid red;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -145,6 +159,29 @@
 
     // Beispielaufruf der Funktion, ersetzen Sie dies durch Ihren tatsächlichen Aufruf
     setTimeout(completeAsciiArtDisplay, 5000); // Zeigt das Popup nach 5 Sekunden
+</script>
+
+    <div id="popup">ERROR: MISSION GESCHEITERT</div>
+
+<script>
+    document.querySelectorAll('.dog-container').forEach(container => {
+        container.addEventListener('mouseenter', function() {
+            document.querySelectorAll('.dog-container').forEach(otherContainer => {
+                if (otherContainer !== container) {
+                    otherContainer.querySelector('img').style.filter = 'grayscale(100%)';
+                    otherContainer.querySelector('.cross').style.display = 'block';
+                }
+            });
+        });
+        container.addEventListener('mouseleave', function() {
+            document.querySelectorAll('.dog-container img').forEach(img => img.style.filter = '');
+            document.querySelectorAll('.cross').forEach(cross => cross.style.display = 'none');
+        });
+        container.addEventListener('click', function() {
+            document.cookie = "MissionErfolgreich=false; path=/";
+            document.getElementById('popup2').style.display = 'block';
+        });
+    });
 </script>
 
 </body>
