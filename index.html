@@ -35,15 +35,23 @@
                 
                 // Wait for 5 seconds before showing the button
                 setTimeout(function() {
-                    var buttonHTML = '<button onclick="location.href=\'secondPage.html\'">Go to Second Page</button>';
-                    specialImageDiv.insertAdjacentHTML('beforeend', buttonHTML);
-                }, 5000);
+    var btn = document.createElement("button");
+    btn.innerHTML = "Zur geheimen Nachricht";
+    btn.onclick = function() {
+        window.location.href = 'secondPage.html';
+    };
+    document.body.appendChild(btn);
+}, 5000); // Wartezeit in Millisekunden, hier: 5000ms = 5 Sekunden
             } else {
                 // Clear the gif display and remove the button if the date is not the current date
                 document.getElementById('specialImage').innerHTML = '';
             }
         }
+        
+        
     </script>
+
+
 </head>
 <body>
 
