@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Selector Example</title>
+    <title>Date Selector with Special Date Feature</title>
     <style>
-        /* Style the body to use full height of the viewport and apply flex display */
         body {
             display: flex;
             flex-direction: column;
@@ -15,18 +14,27 @@
             margin: 0;
         }
 
-        /* Style the container for a little spacing */
         .container {
             text-align: center;
             padding: 20px;
         }
     </style>
     <script>
-        // Function to handle the date selection
         function handleDateSelection() {
             var selectedDate = document.getElementById('dateSelector').value;
-            alert("You selected: " + selectedDate);
+            var currentDate = new Date().toISOString().slice(0, 10); // Format YYYY-MM-DD
+
+            // Display the selected date
             document.getElementById('displayDate').innerText = "Selected Date: " + selectedDate;
+
+            // Check if the selected date is the current date
+            if (selectedDate === currentDate) {
+                // Display the happyBirthday.gif if the selected date is the current date
+                document.getElementById('specialImage').innerHTML = '<img src="happyBirthday.gif" alt="Happy Birthday">';
+            } else {
+                // Clear the gif display if the date is not the current date
+                document.getElementById('specialImage').innerHTML = '';
+            }
         }
     </script>
 </head>
@@ -36,6 +44,7 @@
     <h2>Select a Date</h2>
     <input type="date" id="dateSelector" onchange="handleDateSelection()">
     <p id="displayDate">Selected Date: None</p>
+    <div id="specialImage"></div> <!-- Container for the special gif -->
 </div>
 
 </body>
