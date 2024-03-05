@@ -94,7 +94,6 @@
     <div id="popup">
         <p>WARNUNG: Systemintegritätsverletzung erkannt.</p>
         <p>Unbefugter Zugriff wurde identifiziert. Starten Sie umgehend Sicherheitsprotokolle und kontaktieren Sie den Systemadministrator.</p>
-        <p>Dies ist kein Übungsalarm.</p>
         <button id="closePopup">Schließen</button>
     </div>
 </div>
@@ -114,8 +113,7 @@
         showHackerAlert();
     }
 
-    // Beispielaufruf der Funktion, ersetzen Sie dies durch Ihren tatsächlichen Aufruf
-    setTimeout(completeAsciiArtDisplay, 10000); // Zeigt das Popup nach 5 Sekunden
+
 </script>
     <div id="message"></div>
     <div id="asciiDachshund"></div>
@@ -360,6 +358,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
                 document.getElementById("asciiDachshund").textContent += asciiArt.split('\n')[lineIndex] + '\n';
                 lineIndex++;
                 setTimeout(showAsciiDachshund, 100); // Schnellere Ausgabe für die ASCII-Art
+            } else {
+                    // Beispielaufruf der Funktion, ersetzen Sie dies durch Ihren tatsächlichen Aufruf
+                setTimeout(completeAsciiArtDisplay, 4000); // Zeigt das Popup nach 5 Sekunden
             }
         }
 
