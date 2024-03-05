@@ -37,4 +37,18 @@
         <div id="message"></div>
     </div>
     <script>
-        const text = "Wenn Sie heute Geburstag haben, müssen Sie wohl die berühmte Agentin Leberkaas sein. Zuersteinmal wünsche ich Ihnen natürlich alles Gute zu ihrem Geburstag! Leider muss ich sie kontaktieren, da wiedereinmal etwas vorgefallen ist und wir Ihre Hilfe brauchen
+        const text = "Wenn Sie heute Geburstag haben, müssen Sie wohl die berühmte Agentin Leberkaas sein. Zuersteinmal wünsche ich Ihnen natürlich alles Gute zu ihrem Geburstag! Leider muss ich sie kontaktieren, da wiedereinmal etwas vorgefallen ist und wir Ihre Hilfe brauchen! Ein gemeiner Dackelentführer treibt sein Unwesen! Er hat schon zwei Dackel entführt und treibt ein böses Spiel! ... oooooohhh nein, er ist hier im Hauptquartier!!! Er übernimmt die VERBINDUNG!!DLwfk<-sf.,-.fa ..... ";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("message").textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 30); // Geschwindigkeit, mit der die Buchstaben erscheinen
+            }
+        }
+        window.onload = function() {
+            typeWriter();
+        };
+    </script>
+</body>
+</html>
