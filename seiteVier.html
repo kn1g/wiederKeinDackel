@@ -64,6 +64,15 @@
         document.querySelector('#dog2 .cross').style.display = 'none';
     });
 
+        document.getElementById('dog2').addEventListener('mouseenter', function() {
+        document.querySelector('#dog1 img').style.filter = 'grayscale(100%)';
+        document.querySelector('#dog1 .cross').style.display = 'block';
+    });
+    document.getElementById('dog2').addEventListener('mouseleave', function() {
+        document.querySelector('#dog1 img').style.filter = '';
+        document.querySelector('#dog1 .cross').style.display = 'none';
+    });
+
 
 </script>
 
