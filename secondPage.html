@@ -16,9 +16,12 @@
             margin: 0;
         }
         #message, #asciiDachshund {
-            white-space: pre-wrap;
+            white-space: pre-wrap; /* Erlaubt Zeilenumbrüche und Leerzeichen */
+            overflow: hidden; /* Versteckt den Überlauf */
+            border-right: .15em solid #0f0;
+            animation: blink-cursor 500ms steps(40) infinite;
             font-size: 1em; /* Standard-Schriftgröße für den Text */
-             width: 80%;
+            width: 80%;
             margin: auto;
             overflow-wrap: break-word;
         }
@@ -27,6 +30,20 @@
              width: 80%;
             margin: auto;
             overflow-wrap: break-word;
+        }
+        body {
+            background-color: black;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        @keyframes blink-cursor {
+            from, to { border-color: transparent }
+            50% { border-color: #0f0; }
         }
     </style>
 </head>
