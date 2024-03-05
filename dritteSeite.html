@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Hacker Spiel</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: black;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #text {
+            white-space: pre-wrap;
+            font-size: 20px;
+        }
+
+        /* Stil für den Verzerrungseffekt */
+        #distortion {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 0, 0, 0.1) 0%,
+                rgba(0, 255, 0, 0.1) 33%,
+                rgba(0, 0, 255, 0.1) 66%
+            );
+            z-index: 1;
+            pointer-events: none; /* Ermöglicht Klicken "durch" den Effekt */
+            animation: distortAnimation 1s infinite linear;
+        }
+
+        @keyframes distortAnimation {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="text"></div>
+<div id="distortion"></div>
+
+<script>
+    const message = "Hallo Agentin Leberkaas. Das Leben ist kein Dackelhof. Sie werden nicht alle retten können! Muahahahahahahahaaaaa.... WIR SPIELEN JETZT EIN SPIEL!";
+    let index = 0;
+
+    function typeWriter() {
+        if (index < message.length) {
+            document.getElementById("text").innerHTML += message.charAt(index);
+            index++;
+            setTimeout(typeWriter, 50); // Anpassung für die Geschwindigkeit des Typewriter-Effekts
+        } else {
+            // Nachdem der Text komplett angezeigt wurde, aktiviere den Verzerrungseffekt
+            document.getElementById("distortion").style.display = "block";
+        }
+    }
+
+    window.onload = function() {
+        typeWriter();
+    };
+</script>
+
+</body>
+</html>
