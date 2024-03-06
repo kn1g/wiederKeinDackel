@@ -49,62 +49,51 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 20px;
         }
     </style>
-    <script>
-    function typeWriter(text, i, fnCallback) {
-        if (i < text.length) {
-            document.getElementById("displayDate").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
-
-            // Warte ein bisschen vor dem nächsten Buchstaben
-            setTimeout(function() {
-                typeWriter(text, i + 1, fnCallback)
-            }, 100);
-        }
-        // Text wurde komplett angezeigt, rufe Callback auf, wenn vorhanden
-        else if (typeof fnCallback == 'function') {
-            setTimeout(fnCallback, 700);
-        }
-    }
-
-    function handleDateSelection() {
-        var selectedDate = document.getElementById('dateSelector').value;
-        var currentDate = new Date().toISOString().slice(0, 10); // Format YYYY-MM-DD
-
-        // Starte Typewriter-Effekt mit dem ausgewählten Datum
-        var welcomeText = "Willkommen Agent Leberkaas. Bitte geben Sie zur Authentifizierung Ihren Geburtstag ein: " + selectedDate;
-        typeWriter(welcomeText, 0, function(){
-            // Callback-Funktion nachdem der Typewriter-Effekt fertig ist
-            if (selectedDate === currentDate) {
-                // Zeige das happyBirthday.gif, wenn das ausgewählte Datum heute ist
-                var specialImageDiv = document.getElementById('specialImage');
-                specialImageDiv.innerHTML = '<img src="happyBirthday.gif" alt="Happy Birthday">';
-                
-                // Zeige den Weiter-Button nach 5 Sekunden
-                setTimeout(function() {
-                    var btn = document.createElement("button");
-                    btn.innerHTML = "Zur geheimen Nachricht";
-                    btn.onclick = function() {
-                        window.location.href = 'secondPage.html';
-                    };
-                    document.body.appendChild(btn);
-                }, 5000); // Wartezeit in Millisekunden, hier: 5000ms = 5 Sekunden
-            } else {
-                // Wenn das Datum nicht heute ist, entferne gif und Button
-                document.getElementById('specialImage').innerHTML = '';
-            }
-        });
-    }
-</script>
-
 
 </head>
 <body>
 
 <div class="container">
-    <h2>Select a Date</h2>
-    <input type="date" id="dateSelector" onchange="handleDateSelection()">
-    <p id="displayDate">Selected Date: None</p>
-    <div id="specialImage"></div> <!-- Container for the special gif and the button -->
+    <p id="typewriterText"></p>
+    <input type="date" id="dateSelector" style="margin-top: 20px;">
+    <div id="specialImage"></div>
+    <button id="continueButton" onclick="window.location.href='secondPage.html';">Zur geheimen Nachricht</button>
 </div>
+
+<script>
+    const greetingText = "Willkommen Agent Leberkaas.";
+    let index = 0;
+    
+    function startTypewriter() {
+        if (index < greetingText.length) {
+            document.getElementById("typewriterText").innerHTML += greetingText.charAt(index);
+            index++;
+            setTimeout(startTypewriter, 100);
+        } else {
+            // Setup date selection check after greeting is completed
+            document.getElementById("dateSelector").addEventListener("change", handleDateSelection);
+        }
+    }
+
+    function handleDateSelection() {
+        const selectedDate = document.getElementById("dateSelector").value;
+        const currentDate = new Date().toISOString().slice(0, 10);
+
+        if (selectedDate === currentDate) {
+            document.getElementById("specialImage").innerHTML = '<img src="happyBirthday.gif" alt="Happy Birthday">';
+            document.getElementById("specialImage").style.display = 'block';
+            document.getElementById("continueButton").style.display = 'block';
+        } else {
+            document.getElementById("specialImage").style.display = 'none';
+            document.getElementById("continueButton").style.display = 'none';
+        }
+    }
+    
+    window.onload = function() {
+        startTypewriter();
+    };
+</script>
+
 
 </body>
 </html>
