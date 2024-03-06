@@ -50,36 +50,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     </style>
     <script>
-        function handleDateSelection() {
-            var selectedDate = document.getElementById('dateSelector').value;
-            var currentDate = new Date().toISOString().slice(0, 10); // Format YYYY-MM-DD
+    function typeWriter(text, i, fnCallback) {
+        if (i < text.length) {
+            document.getElementById("displayDate").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
 
-            // Display the selected date
-            document.getElementById('displayDate').innerText = "Willkommen Agent Leberkaas. Bitte geben Sie zur Authentifizierung Ihren Geburtstag ein: " + selectedDate;
+            // Warte ein bisschen vor dem nächsten Buchstaben
+            setTimeout(function() {
+                typeWriter(text, i + 1, fnCallback)
+            }, 100);
+        }
+        // Text wurde komplett angezeigt, rufe Callback auf, wenn vorhanden
+        else if (typeof fnCallback == 'function') {
+            setTimeout(fnCallback, 700);
+        }
+    }
 
-            // Check if the selected date is the current date
+    function handleDateSelection() {
+        var selectedDate = document.getElementById('dateSelector').value;
+        var currentDate = new Date().toISOString().slice(0, 10); // Format YYYY-MM-DD
+
+        // Starte Typewriter-Effekt mit dem ausgewählten Datum
+        var welcomeText = "Willkommen Agent Leberkaas. Bitte geben Sie zur Authentifizierung Ihren Geburtstag ein: " + selectedDate;
+        typeWriter(welcomeText, 0, function(){
+            // Callback-Funktion nachdem der Typewriter-Effekt fertig ist
             if (selectedDate === currentDate) {
-                // Display the happyBirthday.gif if the selected date is the current date
+                // Zeige das happyBirthday.gif, wenn das ausgewählte Datum heute ist
                 var specialImageDiv = document.getElementById('specialImage');
                 specialImageDiv.innerHTML = '<img src="happyBirthday.gif" alt="Happy Birthday">';
                 
-                // Wait for 5 seconds before showing the button
+                // Zeige den Weiter-Button nach 5 Sekunden
                 setTimeout(function() {
-    var btn = document.createElement("button");
-    btn.innerHTML = "Zur geheimen Nachricht";
-    btn.onclick = function() {
-        window.location.href = 'secondPage.html';
-    };
-    document.body.appendChild(btn);
-}, 5000); // Wartezeit in Millisekunden, hier: 5000ms = 5 Sekunden
+                    var btn = document.createElement("button");
+                    btn.innerHTML = "Zur geheimen Nachricht";
+                    btn.onclick = function() {
+                        window.location.href = 'secondPage.html';
+                    };
+                    document.body.appendChild(btn);
+                }, 5000); // Wartezeit in Millisekunden, hier: 5000ms = 5 Sekunden
             } else {
-                // Clear the gif display and remove the button if the date is not the current date
+                // Wenn das Datum nicht heute ist, entferne gif und Button
                 document.getElementById('specialImage').innerHTML = '';
             }
-        }
-        
-        
-    </script>
+        });
+    }
+</script>
 
 
 </head>
